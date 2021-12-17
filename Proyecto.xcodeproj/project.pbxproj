@@ -39,6 +39,7 @@
 		8DC41D88276B8A70005949CE /* colors.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8DC41D87276B8A6F005949CE /* colors.gif */; };
 		8DC41D8A276BE8C4005949CE /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC41D89276BE8C4005949CE /* DownloadManager.swift */; };
 		8DC41D8C276C10B7005949CE /* RestServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC41D8B276C10B7005949CE /* RestServiceManager.swift */; };
+		8DC41D8F276C5F8E005949CE /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DC41D8D276C5F8E005949CE /* DataModel.xcdatamodeld */; };
 		8DF4A6FC275897E0008B23DC /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4A6FB275897E0008B23DC /* PickerViewController.swift */; };
 		D433FCE6BC5BCB66CAC2C54C /* Pods_ProyectoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E01279FCA89B025A011AFB9 /* Pods_ProyectoTests.framework */; };
 /* End PBXBuildFile section */
@@ -101,6 +102,7 @@
 		8DC41D87276B8A6F005949CE /* colors.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = colors.gif; path = ../../../../../Downloads/colors.gif; sourceTree = "<group>"; };
 		8DC41D89276BE8C4005949CE /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		8DC41D8B276C10B7005949CE /* RestServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestServiceManager.swift; sourceTree = "<group>"; };
+		8DC41D8E276C5F8E005949CE /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		8DF4A6FB275897E0008B23DC /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		B9C4BB6FDF8443029F64B0B5 /* Pods-Proyecto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Proyecto.release.xcconfig"; path = "Target Support Files/Pods-Proyecto/Pods-Proyecto.release.xcconfig"; sourceTree = "<group>"; };
 		CACA4072A65AC7AAF57BF378 /* Pods_Proyecto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Proyecto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				8DBBB79F2731299F00F9C550 /* Model.swift */,
+				8DC41D8D276C5F8E005949CE /* DataModel.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				8DBBB80E27386DFD00F9C550 /* TrackTableViewCell.swift in Sources */,
 				8DC41D64276A3662005949CE /* Extension.swift in Sources */,
 				8D8E99D927559E4600A5939F /* MusicButton.swift in Sources */,
+				8DC41D8F276C5F8E005949CE /* DataModel.xcdatamodeld in Sources */,
 				8DC41D8A276BE8C4005949CE /* DownloadManager.swift in Sources */,
 				8DBD074B2763233E00C39D64 /* LoginViewModel.swift in Sources */,
 				8DC41D8C276C10B7005949CE /* RestServiceManager.swift in Sources */,
@@ -928,6 +932,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8DC41D8D276C5F8E005949CE /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8DC41D8E276C5F8E005949CE /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 8DC41D8E276C5F8E005949CE /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8D5F7DCC2723589700E02691 /* Project object */;
 }

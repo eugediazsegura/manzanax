@@ -31,6 +31,7 @@ class AudioPlayerViewController: UIViewController, JukeboxDelegate {
     
     var audioCellModel: AudioCellModel?
     
+    var items : [UIAction]!
     let screenWidth: CGFloat =  UIScreen.screenWidth
     
     
@@ -152,21 +153,27 @@ class AudioPlayerViewController: UIViewController, JukeboxDelegate {
     
     
     func addMenuItems() -> UIMenu {
-        let actionsDictionary = [BtnMusic.download: descargar, BtnMusic.share: share, BtnMusic.add: add, BtnMusic.trash: eliminar]
-        var items = [UIAction]()
+        let actionsDictionary = [BtnMusic.download: download, BtnMusic.share: share, BtnMusic.add: add, BtnMusic.trash: delete, BtnMusic.like: like]
+        items = [UIAction]()
         for opcion in BtnMusic.allCases {
             if opcion.title == BtnMusic.download.title && descargando {
                 continue
             }
+            if audioCellModel?.love == true {
+                BtnMusic.like.image?.withTintColor(UIColor(ciColor: .red))
+            }
             items.append(.init(title: opcion.title, image: opcion.image, handler: {_ in
                 actionsDictionary[opcion]?()
+
             }))
         }
+
+        
         return .init(title: "", image: nil, children: items)
         
     }
     
-    func eliminar() -> Void {
+    func delete() -> Void {
         guard let celda = audioCellModel else {return}
         
         if let cancionABorrar = playlist.firstIndex(where: {$0 == celda.songName}){
@@ -180,10 +187,10 @@ class AudioPlayerViewController: UIViewController, JukeboxDelegate {
         
     }
     
-    func descargar() -> Void {
+    func download() -> Void {
         guard let celda = audioCellModel else {return}
         if let cancionADescargar = misTracks.first(where:{ $0.title == celda.songName}){
-            self.popUp("Descargando \n\((cancionADescargar.title)?.uppercased()) ","artista: \(cancionADescargar.artist ?? "")\n género: \(String(describing: cancionADescargar.genre!.rawValue))")
+            self.popUp("Descargando \n\((cancionADescargar.title)?.uppercased() ?? "") ","artista: \(cancionADescargar.artist ?? "")\n género: \(String(describing: cancionADescargar.genre!))")
             DownloadManager.shared.startDownload(url: URL(string: "https://speed.hetzner.de/100MB.bin")!)
             descargando = true
             menuButton.menu = nil
@@ -197,9 +204,9 @@ class AudioPlayerViewController: UIViewController, JukeboxDelegate {
         mySound?.pause()
         guard let celda = audioCellModel else {return}
         if let shareSong = misTracks.first(where:{ $0.title == celda.songName}){
-            let link = "https://api.whatsapp.com/send?text=canci%C3%B3n%3A%20%2A\(shareSong.title)%2A%0Aartista%3A%20_\(String(describing: shareSong.artist!))_%0Ag%C3%A9nero%3A%20\(String(describing: shareSong.genre!.rawValue))"
+            let link = "https://api.whatsapp.com/send?text=canci%C3%B3n%3A%20%2A\(shareSong.title!)%2A%0Aartista%3A%20_\(String(describing: shareSong.artist!))_%0Ag%C3%A9nero%3A%20\(String(describing: shareSong.genre!))"
             let linkFormatted = link.replacingOccurrences(of: " ", with: "%20")
-            print(linkFormatted)
+            //print(linkFormatted)
             if let url = URL(string: linkFormatted) {
                 if UIApplication.shared.canOpenURL(url) {
                     if #available(iOS 10.0, *) {
@@ -220,6 +227,14 @@ class AudioPlayerViewController: UIViewController, JukeboxDelegate {
         }
     }
     
+    func like() -> Void {
+        if var celda = audioCellModel {
+            celda.loved()
+        }
+        
+        
+    }
+    
     func calcConstraintButton() -> CGFloat {
         let restValue = 480.0
         var constraint = CGFloat()
@@ -231,6 +246,8 @@ class AudioPlayerViewController: UIViewController, JukeboxDelegate {
         }
         return constraint
     }
+    
+    
     
     
     func jukeboxPlaybackProgressDidChange(_ jukebox: Jukebox) {

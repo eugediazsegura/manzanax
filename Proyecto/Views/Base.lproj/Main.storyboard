@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jWP-an-v1b">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -355,14 +355,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Loguito" translatesAutoresizingMaskIntoConstraints="NO" id="LXb-Ub-h61">
-                                <rect key="frame" x="82" y="134" width="250" height="150"/>
-                                <color key="tintColor" name="imageColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="DzO-Ax-CYK"/>
-                                    <constraint firstAttribute="width" constant="250" id="mk0-3A-DTX"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIx-J3-FcH">
                                 <rect key="frame" x="157" y="759" width="100" height="30"/>
                                 <color key="backgroundColor" name="button"/>
@@ -377,19 +369,28 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MUSIC PLAYLIST" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fbz-CE-k7w">
-                                <rect key="frame" x="24" y="69" width="366" height="35"/>
+                                <rect key="frame" x="24" y="69" width="366" height="221"/>
                                 <fontDescription key="fontDescription" name="PingFangHK-Semibold" family="PingFang HK" pointSize="25"/>
                                 <color key="textColor" name="Titles"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Loguito" translatesAutoresizingMaskIntoConstraints="NO" id="LXb-Ub-h61">
+                                <rect key="frame" x="-43" y="298" width="500" height="300"/>
+                                <color key="tintColor" name="imageColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="DzO-Ax-CYK"/>
+                                    <constraint firstAttribute="width" constant="500" id="mk0-3A-DTX"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="d0R-xw-JbR"/>
                         <color key="backgroundColor" name="Background"/>
                         <constraints>
                             <constraint firstItem="Fbz-CE-k7w" firstAttribute="leading" secondItem="d0R-xw-JbR" secondAttribute="leading" constant="24" id="4q4-m1-bwE"/>
+                            <constraint firstItem="LXb-Ub-h61" firstAttribute="centerY" secondItem="QXU-96-poI" secondAttribute="centerY" id="5Uk-f0-vg3"/>
                             <constraint firstItem="d0R-xw-JbR" firstAttribute="trailing" secondItem="Fbz-CE-k7w" secondAttribute="trailing" constant="24" id="7ah-iT-JCT"/>
                             <constraint firstItem="UIx-J3-FcH" firstAttribute="centerX" secondItem="d0R-xw-JbR" secondAttribute="centerX" id="Qfe-gt-KVl"/>
-                            <constraint firstItem="LXb-Ub-h61" firstAttribute="top" secondItem="Fbz-CE-k7w" secondAttribute="bottom" constant="30" id="Tpi-CR-2Sb"/>
+                            <constraint firstItem="LXb-Ub-h61" firstAttribute="top" secondItem="Fbz-CE-k7w" secondAttribute="bottom" constant="8" symbolic="YES" id="Tpi-CR-2Sb"/>
                             <constraint firstItem="d0R-xw-JbR" firstAttribute="bottom" secondItem="UIx-J3-FcH" secondAttribute="bottom" constant="24" id="aVg-jb-QKF"/>
                             <constraint firstItem="Fbz-CE-k7w" firstAttribute="top" secondItem="d0R-xw-JbR" secondAttribute="top" constant="25" id="n1j-YN-imf"/>
                             <constraint firstItem="LXb-Ub-h61" firstAttribute="centerX" secondItem="d0R-xw-JbR" secondAttribute="centerX" id="vZW-9G-Fh4"/>

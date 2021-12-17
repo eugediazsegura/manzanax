@@ -32,9 +32,9 @@ class DownloadManager: NSObject, ObservableObject {
         let task = urlSession.downloadTask(with: url)
         task.resume()
         tasks.append(task)
-
+        
     }
-
+    
     private func updateTasks() {
         urlSession.getAllTasks{ tasks in
             DispatchQueue.main.async {

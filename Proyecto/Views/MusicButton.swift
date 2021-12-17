@@ -27,7 +27,7 @@ class MusicButton: UIButton {
     
     func performTwoStateSelection() {
         self.isPlaying = !isPlaying
-        print(isPlaying)
+        //print(isPlaying)
         self.setImage(isPlaying ? icon : secondIcon, for: .normal)
         self.setImage(isPlaying ? icon : secondIcon, for: .highlighted)
     }

@@ -7,6 +7,7 @@
 
 import UIKit
 import Jukebox
+import CoreData
 
 class TableViewController: UITableViewController {
     
@@ -19,6 +20,79 @@ class TableViewController: UITableViewController {
         self.tableView.rowHeight = 80;
         
         //tracks = misTracks
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.managedObjectContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TrackList")
+        //Leemos la info en COREDATA
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context!.fetch(request)
+            misTracks = [Track]()
+            for data in result as! [NSManagedObject] {
+                let title = data.value(forKey: "title") as? String
+                let artist = data.value(forKey: "artist") as? String
+                let album = data.value(forKey: "album") as? String
+                let song_id = data.value(forKey: "song_id") as? String
+                let genre = data.value(forKey: "genre") as? String
+                
+                let track = Track(title: title ?? "", artist: artist ?? "", album: album ?? "", genre: genre ?? "", songId: song_id ?? "")
+                misTracks.append(track)
+                print(data.value(forKey: "title") as! String)
+                
+            }
+            self.tableView.reloadData()
+        } catch {
+            
+            print("Failed")
+        }
+        
+        if true {
+            //TODO: Quitamos esta linea solo si queremos buscar la info desde servicio
+            RestServiceManager.shared.getToServer(responseType: [Track].self, method: .get, endpoint: "songs") { status, data in
+                misTracks = [Track]()
+                if let _data = data {
+                    misTracks = _data
+                    
+                    if let _context = context {
+                        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "TrackList")
+                        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+                        
+                        do {
+                            try appDelegate.persistentStoreCoordinator?.execute(deleteRequest, with: _context)
+                        } catch let error as NSError {
+                            // TODO: handle the error
+                            print(error)
+                        }
+                        
+                        //Guardamos la info en COREDATA
+                        for item in _data {
+                            guard let trackEntity = NSEntityDescription.insertNewObject(forEntityName: "TrackList", into: _context) as? NSManagedObject else {
+                                return
+                            }
+                            
+                            trackEntity.setValue(item.artist, forKey: "artist")
+                            trackEntity.setValue(item.title, forKey: "title")
+                            trackEntity.setValue(item.songId, forKey: "song_id")
+                            trackEntity.setValue(item.album, forKey: "album")
+                            trackEntity.setValue(item.genre, forKey: "genre")
+                            
+                            do {
+                                try _context.save()
+                            } catch {
+                                print("Could not save. \(error), \(error.localizedDescription)")
+                            }
+                        }
+                        
+                    }
+                    print("info guardada")
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        
+        
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateTracks(_:)),
@@ -34,8 +108,8 @@ class TableViewController: UITableViewController {
         //tracks.append(Track(title: "Porcelain", artist: "Moby", album: "Play", songId: "0", genre: nil, duration: 12.3))
         tableView.reloadData()
     }
-        
-        
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -57,7 +131,6 @@ class TableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -24,6 +24,11 @@ var playlist : [String] = []
 struct AudioCellModel {
     var delegate : CelDelegate
     var songName : String
+    var love = false
+    
+    mutating func loved() {
+        self.love = !love
+    }
 }
 
 protocol CelDelegate{
@@ -34,8 +39,8 @@ struct Track : Codable, Hashable {
     let title : String?
     let artist: String?
     let album: String?
-    var genre : MusicGenre?
-    let songId : String
+    let genre : String?
+    let songId : String?
     //let duration : Double?
     
     enum CodingKeys: String, CodingKey {
@@ -48,13 +53,13 @@ struct Track : Codable, Hashable {
         //case duration
     }
     
-    enum MusicGenre: String, Codable {
-      case Rock
-      case Pop
-      case Jazz
-      case Folclore
-      case Vacio = ""
-    }
+//    enum MusicGenre: String, Codable {
+//      case Rock
+//      case Pop
+//      case Jazz
+//      case Folclore
+//      case Vacio = ""
+//    }
 }
 
 enum PlayerStates {
