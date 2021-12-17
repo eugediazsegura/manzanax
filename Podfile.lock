@@ -1,0 +1,20 @@
+PODS:
+  - Alamofire (5.5.0)
+  - Jukebox (0.2.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - Jukebox
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Jukebox
+
+SPEC CHECKSUMS:
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  Jukebox: 81db618ccd3a1cc9b154f4ae0f5c4b54638666dd
+
+PODFILE CHECKSUM: 7156b754947dd485bbb47431c107b2050e0e3989
+
+COCOAPODS: 1.11.2
